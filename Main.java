@@ -68,7 +68,7 @@ public class Main {
         scanner.nextLine(); // Clear the buffer
 
         System.out.println("Enter Customer Name:");
-        customer.setName(scanner.nextLine());
+        customer.setLastName(scanner.nextLine());
 
         System.out.println("Enter Customer Email:");
         customer.setEmail(scanner.nextLine());
@@ -78,11 +78,12 @@ public class Main {
 
     private static void handleMysql(Customer customer) {
         System.out.println("Welcome to MySQL!");
-        try (MySQLCrud mysqlCRUD = new MySQLCrud()) {
+        try {
+            MySQLCrud mysqlCRUD = new MySQLCrud();
             System.out.println("Inserting a Customer in MySQL");
             mysqlCRUD.insertCustomer(customer);
             System.out.println("Updating a Customer in MySQL");
-            mysqlCRUD.updateCustomer(customer);
+            mysqlCRUD.updateCustomer(123,"Smith");
             System.out.println("Reading a Customer from MySQL");
             mysqlCRUD.readCustomer(customer.getId());
             System.out.println("Deleting a Customer from MySQL");
